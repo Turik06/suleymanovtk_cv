@@ -7,7 +7,7 @@ image_copy = (image != 0).astype(bool)  # Работаем с копией
 
 print(image_copy.shape)
 
-# Приведение к float перед отображением
+# Приведение к float перед отображением.
 plt.imshow(image_copy.astype(float), cmap="gray")
 plt.show()
 
