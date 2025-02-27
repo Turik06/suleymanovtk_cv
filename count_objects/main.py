@@ -1,10 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Загружаем изображение и сразу преобразуем его в булев массив, чтобы алгоритм мог работать с картинкой
-image = (np.load("example2.npy") != 0).astype(bool)
-print(image.shape)
-plt.imshow(image)
+# Загружаем изображение и создаем копию, преобразуя ее в булев массив
+image = np.load("example1.npy")
+image_copy = (image != 0).astype(bool)  # Работаем с копией
+
+print(image_copy.shape)
+
+# Приведение к float перед отображением
+plt.imshow(image_copy.astype(float), cmap="gray")
 plt.show()
 
 
@@ -19,11 +23,12 @@ def match(a, masks):
             return True
     return False
 
+
 def count_objects(image):
     E = 0
-    for y in range(0, image.shape[0] - 1):
-        for x in range(0, image.shape[1] - 1):
-            sub = image[y : y + 2, x : x + 2]  # Здесь image уже булевый
+    for y in range(image.shape[0] - 1):
+        for x in range(image.shape[1] - 1):
+            sub = image[y : y + 2, x : x + 2]  
             if match(sub, external):
                 E += 1
             elif match(sub, internal):
@@ -32,5 +37,9 @@ def count_objects(image):
                 E += 2
     return E / 4
 
-# print(count_objects(image)) #Для первого файла
-print(sum([count_objects(image[:,:,i]) for i in range(image.shape[2])])) #Для второго файла
+
+# Проверка размерности изображения перед подсчетом
+if len(image_copy.shape) == 3:
+    print(sum(count_objects(image_copy[:, :, i]) for i in range(image_copy.shape[2])))
+else:
+    print(count_objects(image_copy))
