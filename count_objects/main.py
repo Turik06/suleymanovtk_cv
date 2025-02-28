@@ -1,3 +1,4 @@
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -12,9 +13,9 @@ plt.imshow(image_copy.astype(float), cmap="gray")
 plt.show()
 
 
-external = (np.diag([1, 1, 1, 1]).reshape(4, 2, 2) != 0).astype(bool)
+external = (np.diag([1, 1, 1, 1]).reshape(4, 2, 2) != 0)
 internal = np.logical_not(external)
-cross = (np.array([[[1, 0], [0, 1]], [[0, 1], [1, 0]]]) != 0).astype(bool)
+cross = (np.array([[[1, 0], [0, 1]], [[0, 1], [1, 0]]]) != 0)
 
 
 def match(a, masks):
