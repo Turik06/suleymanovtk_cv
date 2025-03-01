@@ -13,9 +13,9 @@ plt.imshow(image_copy.astype(float), cmap="gray")
 plt.show()
 
 
-external = (np.diag([1, 1, 1, 1]).reshape(4, 2, 2) != 0)
+external = (np.diag([1, 1, 1, 1]).reshape(4, 2, 2))
 internal = np.logical_not(external)
-cross = (np.array([[[1, 0], [0, 1]], [[0, 1], [1, 0]]]) != 0)
+cross = (np.array([[[1, 0], [0, 1]], [[0, 1], [1, 0]]]))
 
 
 def match(a, masks):
