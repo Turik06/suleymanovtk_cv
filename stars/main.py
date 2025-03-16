@@ -7,8 +7,8 @@ data = np.load("stars.npy")
 notstars = np.array([[1,1,1],
             [1,1,1]])
 
-notstars = binary_opening(data,notstars)
-labeled_notstars = label(notstars)
+notstars_morfo = binary_opening(data,notstars)
+labeled_notstars = label(notstars_morfo)
 
 labeled_data=label(data)
 
