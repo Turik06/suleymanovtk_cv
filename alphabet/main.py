@@ -38,6 +38,7 @@ def recognize(region):
             cx/=region.image.shape[1]
             cy/=region.image.shape[0]
 
+            # Нахождение D и P
             if count_lgr_vlines(region):
                 if cx>0.4 or cy>0.4:
                     return "D"
