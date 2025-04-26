@@ -20,6 +20,8 @@ beat = None
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
     sock.connect((host, port))
+    plt.ion()
+    plt.figure()
 
     while beat != b"yep":
         sock.send(b"get")
@@ -41,6 +43,12 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
             print(sock.recv(10))
             sock.send(b"beat")
             beat = sock.recv(10)
+            plt.clf()
+            plt.subplot(121)
+            plt.imshow(im1)
+            plt.pause(1)
+
+        
 
 # with socket.socket(socket.AF_INET,socket.SOCK_STREAM) as sock:
 #     sock.connect((host,port))
